@@ -101,7 +101,7 @@ VrxBackpackConfig config;
 #elif defined(HDZERO_BACKPACK)
   HDZero vrxModule(&Serial);
 #elif defined(ORQA_BACKPACK)
-  Orqa vrxModule(&Serial);
+  Orqa vrxModule;
 #endif
 
 /////////// FUNCTION DEFS ///////////
@@ -435,10 +435,7 @@ void loop()
   }
 
   #if defined(ORQA_BACKPACK)
-  if (now % 20 == 0)
-  {
-    vrxModule.Loop();
-  }
+  vrxModule.Loop(now);
   #endif
 
   // spam out a bunch of requests for the desired band/channel for the first 5s
